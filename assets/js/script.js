@@ -2,17 +2,16 @@
 var startEl = document.getElementById('start');
 var timerEl = document.getElementById('timer');
 var contentEl = document.getElementById('content');
-// var listedQuestion = document.getElementById('question');
 
 // questions variables: 5 questions
 var myQ1= {
   question: "What is the name of the angry cat?",
-  answer: "grumpy cat",
+  answer: "1",
   incorrect: ["grumpy cat", "ugly cat", "sassy cat", "mad cat"]
 }
 var myQ2= {
   question: "Best flavor of milk tea?",
-  answer: "taro",
+  answer: "3",
   incorrect: ["wintermellon", "honeydew", "taro", "mango"]
 }
 
@@ -36,9 +35,22 @@ function displayQuestions() {
   answers.setAttribute('class', 'btn btn-light mb-3 col-lg-12 text-center');
   answers.innerHTML = [i + 1] + ": " + myQ1.incorrect[i];
   // use a variable # for id to target/select the right answer
-  answers.setAttribute('id', "answer" + i);
+  answers.setAttribute('id', [i + 1]);
   document.getElementById('content').appendChild(answers);
   }
+  var answerEl = document.getElementById('1');
+  var answer2El = document.getElementById('2');
+  var answerEl3 = document.getElementById('3');
+  var answerEl4 = document.getElementById('4');
+  questionLog(answerEl, answer2El, answerEl3, answerEl4);
+}
+
+// Answer Questions
+var questionLog = function() {
+  answerEl.addEventListener('click', answerValidator);
+    function answerValidator() {
+      console.log (answerEl.innerHTML);
+    }
 }
 
 
@@ -66,15 +78,13 @@ function countDown() {
 }
 
 // Game over function
-var gameOver = function() {
-  console.log ("game over!");
-}
+// var gameOver = function() {
+//   console.log ("game over!");
+// }
 
 // use event handler to call coutdownHandler and question Display
 start.addEventListener('click', countDown);
 start.addEventListener('click', displayQuestions);
-
-
 
 
 
