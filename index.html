@@ -6,20 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Javascript Quiz</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
   </head>
   <body>
-    <div class="container">
-      <h1 class="welcome">How much do you know about jS?</h1>
-      <h2 id="timer"></h2>
-      <section id="quiz-question-block">
-        <h2 id="question"></h2>
-        <button id="answer1, lol"></button>
-        <button id="answer2, lol"></button>
-        <button id="answer3, lol"></button>
-        <button id="answer4, lol"></button>
-      </section>
-      <button id="start">start</button>
-    </div>
+    <header>
+      <!-- <div class="container"> -->
+      <div class="mb-4">
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd">
+          <a href="#high scores">View Highscores </a>
+          <p>Timer: 10:00</p>
+        </nav>
+      </div>
+      <!-- </div> -->
+    </header>
+
+    <section id="quiz-question-block" class="container">
+      <div class="row col-lg-6 d-flex justify-content-center mx-auto">
+        <h1 id="welcome" class="text-center">Quiz WARs!!!</h1>
+        <p>
+          Welcome to the quiz!! Answer as many questions correctly within the
+          alloted time. Be careful- for every question you get wrong, time will
+          be deducted from the clock! Click start to begin. 🎉
+        </p>
+        <button id="start" type="button" class="btn btn-light mb-3">
+          Start
+        </button>
+      </div>
+    </section>
+
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

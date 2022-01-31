@@ -2,7 +2,7 @@
 Psuedocoding
 -- objective 1: create the html for the first screen + styling (bootstrap)
 Arrays needed - Hold questions array, correct points array
-Step 1: 
+Done: Step 1: 
     - title: 
     - description
     - start button
