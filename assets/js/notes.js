@@ -7,19 +7,19 @@ Done: Step 1:
     - description
     - start button
     - nav w/ link to view highscores/timer placeholder
-Step 2: 
-    - put the title and description in a div/container
+Done: Step 2: 
+    - put the title, start button and description in a div/container
         - the div will be used to display 
             - questions (dynamically generated)
             - game over form (display game over/let users insert initials)
             - high score display
-Step 3: Link "start button" event listener to next function
+Done: Step 3: Link "start button" event listener to next function
 
 -- objective 2: Display quiz questions, track if quesitons are correct/incorrect, 
-Step 1:
+Done: Step 1:
     - clear the div holding start quiz display?
     - create an array to pull questions from
-Step 2:
+Done: Step 2:
     - create function to display questions
     - targeting an h1/p?
     - button creation for answers
@@ -56,4 +56,14 @@ Step 2:
     - allow users to "remove highscores" (clear local storage)
 Step 3: 
     - have a button that links back to the start page
+*/
+
+/*
+Future improvements
+else if ((timeLeft > 1) && (timeLeft < 10)) {
+      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+      timerEl.textContent = 'Time remaining: 00:0' + timeLeft;
+      timeLeft--;
+    } 
+
 */
