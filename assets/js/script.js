@@ -7,12 +7,12 @@ var contentEl = document.getElementById('content');
 var myQ1= {
   question: "What is the name of the angry cat?",
   answer: "1",
-  incorrect: ["grumpy cat", "ugly cat", "sassy cat", "mad cat"]
+  choices: ["grumpy cat", "ugly cat", "sassy cat", "mad cat"]
 }
 var myQ2= {
   question: "Best flavor of milk tea?",
   answer: "3",
-  incorrect: ["wintermellon", "honeydew", "taro", "mango"]
+  choices: ["wintermellon", "honeydew", "taro", "mango"]
 }
 
 // Display the questions (one at a time)
@@ -25,31 +25,43 @@ function displayQuestions() {
   // add new question
   var newQuestion = document.createElement('h1');
   newQuestion.setAttribute('class', 'text-center', 'col-lg-12');
-  newQuestion.innerHTML = myQ1.question;
+  newQuestion.innerHTML = myQ2.question;
   // append to div
   document.getElementById('content').appendChild(newQuestion);
 
   // add new answer list
-  for (let i = 0; i < myQ1.incorrect.length; i++) { 
+  for (let i = 0; i < myQ1.choices.length; i++) { 
   var answers = document.createElement('button');
   answers.setAttribute('class', 'btn btn-light mb-3 col-lg-12 text-center');
-  answers.innerHTML = [i + 1] + ": " + myQ1.incorrect[i];
+  answers.innerHTML = [i + 1] + ": " + myQ2.choices[i];
   // use a variable # for id to target/select the right answer
   answers.setAttribute('id', [i + 1]);
   document.getElementById('content').appendChild(answers);
   }
   var answerEl = document.getElementById('1');
   var answer2El = document.getElementById('2');
-  var answerEl3 = document.getElementById('3');
-  var answerEl4 = document.getElementById('4');
-  questionLog(answerEl, answer2El, answerEl3, answerEl4);
+  var answer3El = document.getElementById('3');
+  var answer4El = document.getElementById('4');
+  questionLog(answerEl, answer2El, answer3El, answer4El);
 }
 
 // Answer Questions
-var questionLog = function() {
+var questionLog = function(answerEl, answer2El, answer3El, answer4El) {
   answerEl.addEventListener('click', answerValidator);
+  answer2El.addEventListener('click', answerValidator);
+  answer3El.addEventListener('click', answerValidator);
+  answer4El.addEventListener('click', answerValidator);
+
+    // compares the selected answer to the chosen answer
     function answerValidator() {
-      console.log (answerEl.innerHTML);
+      var input = event.target.textContent
+      const key = input.split('');
+      if (key[0] == myQ2.answer){
+        console.log("correct!");
+      }
+      else {
+        console.log("no");
+      }
     }
 }
 
