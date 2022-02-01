@@ -3,6 +3,9 @@ var startEl = document.getElementById('start');
 var timerEl = document.getElementById('timer');
 var contentEl = document.getElementById('content');
 
+// points collection
+var points = [];
+
 // questions variables: 5 questions
 var myQ1= {
   question: "What is the name of the angry cat?",
@@ -56,11 +59,26 @@ var questionLog = function(answerEl, answer2El, answer3El, answer4El) {
     function answerValidator() {
       var input = event.target.textContent
       const key = input.split('');
+
+      // if the user answers correctly, 1 point pushed into the "points array"!
       if (key[0] == myQ2.answer){
-        console.log("correct!");
+
+        var correct = document.createElement('p');
+        correct.innerHTML = "CORRECT! NICE JOB 👍";
+        document.getElementById('content').appendChild(correct);
+
+        console.log("correct! + points");
+        points.push(1);
       }
+      
+      // if not - no points added
       else {
-        console.log("no");
+
+        var incorrect = document.createElement('p');
+        incorrect.innerHTML = "✨ Incorrect ✨";
+        document.getElementById('content').appendChild(incorrect);
+
+        console.log("incorrect, no points added");
       }
     }
 }
