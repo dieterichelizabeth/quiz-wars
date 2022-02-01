@@ -4,22 +4,41 @@ var timerEl = document.getElementById('timer');
 var contentEl = document.getElementById('content');
 
 var isIncorrect = true;
-var timeLeft = 5;
+var timeLeft = 30;
 
 // points collection
 var points = [];
 
 // questions variables: 5 questions
-var myQ1= {
+var questions = [
+myQ1= {
   question: "What is the name of the angry cat?",
   answer: "1",
   choices: ["grumpy cat", "ugly cat", "sassy cat", "mad cat"]
-}
-var myQ2= {
+},
+myQ2= {
   question: "Best flavor of milk tea?",
   answer: "3",
   choices: ["wintermellon", "honeydew", "taro", "mango"]
+},
+myQ3= {
+  question: "Capital of Texas?",
+  answer: "4",
+  choices: ["Dallas", "Houston", "Oklahoma", "Austin"]
+},
+myQ4= {
+  question: "Best nut?",
+  answer: "1",
+  choices: ["Pecan", "Pistacio", "Peanut", "Walnut"]
+},
+myQ5= {
+  question: "Which bug is useless?",
+  answer: "3",
+  choices: ["Bee", "Spider", "Wasp", "Cicada"]
 }
+]
+
+qCount = questions[4];
 
 // Display the questions (one at a time)
 // create a function loop to display questions by changing the HTML
@@ -31,15 +50,15 @@ function displayQuestions() {
   // add new question
   var newQuestion = document.createElement('h1');
   newQuestion.setAttribute('class', 'text-center', 'col-lg-12');
-  newQuestion.innerHTML = myQ2.question;
+  newQuestion.innerHTML = qCount.question;
   // append to div
   document.getElementById('content').appendChild(newQuestion);
 
   // add new answer list
-  for (let i = 0; i < myQ1.choices.length; i++) { 
+  for (let i = 0; i < 4; i++) { 
   var answers = document.createElement('button');
   answers.setAttribute('class', 'btn btn-light mb-3 col-lg-12 text-center');
-  answers.innerHTML = [i + 1] + ": " + myQ2.choices[i];
+  answers.innerHTML = [i + 1] + ": " + qCount.choices[i];
   // use a variable # for id to target/select the right answer
   answers.setAttribute('id', [i + 1]);
   document.getElementById('content').appendChild(answers);
@@ -64,7 +83,7 @@ var questionLog = function(answerEl, answer2El, answer3El, answer4El) {
       const key = input.split('');
 
       // if the user answers correctly, 1 point pushed into the "points array"!
-      if (key[0] == myQ2.answer){
+      if (key[0] == qCount.answer){
         var correct = document.createElement('p');
         correct.innerHTML = "CORRECT! NICE JOB 👍";
         document.getElementById('content').appendChild(correct);
