@@ -3,6 +3,9 @@ var startEl = document.getElementById('start');
 var timerEl = document.getElementById('timer');
 var contentEl = document.getElementById('content');
 
+var isIncorrect = true;
+var timeLeft = 5;
+
 // points collection
 var points = [];
 
@@ -62,7 +65,6 @@ var questionLog = function(answerEl, answer2El, answer3El, answer4El) {
 
       // if the user answers correctly, 1 point pushed into the "points array"!
       if (key[0] == myQ2.answer){
-
         var correct = document.createElement('p');
         correct.innerHTML = "CORRECT! NICE JOB 👍";
         document.getElementById('content').appendChild(correct);
@@ -78,16 +80,23 @@ var questionLog = function(answerEl, answer2El, answer3El, answer4El) {
         incorrect.innerHTML = "✨ Incorrect ✨";
         document.getElementById('content').appendChild(incorrect);
 
+        // need to change time left in the interval function to -2 (secconds)
         console.log("incorrect, no points added");
       }
     }
 }
 
+// decrement timer function
+// grab element of timer and subtract to display
+// 
 
 // Start the timer
 // Timer that counts down from 60 (CHANGE BACK TO 60!!!)
 function countDown() {
-  var timeLeft = 5;
+  
+  // if (isIncorrect = true) {
+  //   timeLeft = timeLeft - 5;
+  // };
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
@@ -108,9 +117,25 @@ function countDown() {
 }
 
 // Game over function
-// var gameOver = function() {
-//   console.log ("game over!");
-// }
+var gameOver = function() {
+  console.log ("game over!");
+  contentEl.innerHTML = '';
+
+  // Display Game over 
+  var newQuestion = document.createElement('h1');
+  newQuestion.setAttribute('class', 'text-center', 'col-lg-12');
+  newQuestion.innerHTML = "Game Over 👾";
+  // append to div
+  document.getElementById('content').appendChild(newQuestion);
+
+  // Display User's points
+  var totalPoints = points.length * 2
+  var totalScore = document.createElement('p');
+  totalScore.innerHTML = "Your score: " + totalPoints;
+  totalScore.setAttribute('class', 'text-center col-lg-12');
+  document.getElementById('content').appendChild(totalScore);
+
+}
 
 // use event handler to call coutdownHandler and question Display
 start.addEventListener('click', countDown);

@@ -27,6 +27,7 @@ Done: Step 2:
             - answers to be saved in an array w/ #? 
             - can this be used to see if the question is correct?
 Step 3:
+    - add event listener to the question buttons
     - create conditional statement for correct/incorrect questions
             - if correct- push a "point" (+1) into an array, display "correct!"
             - if incorrect- no point added, display "incorrect!"
@@ -38,11 +39,11 @@ Step 1:
     - create function for game over display
     - if all questions answered || timer = 0 then display game over screen
 Step 2:
-    - display the "game over"
-    - calculate the score
+   done - display the "game over"
+   done - calculate the score
         - take the length of points array
         - multiply by two (each "point"= 2 pts)
-    - display the score to the user
+   done - display the score to the user
     - create the form for users to input their initials
         - add event listener for submit
 Step 3:
