@@ -61,11 +61,3 @@ Step 3:
     - have a button that links back to the start page
 */
 
-// ISSUE My local storage does not save data once refreshed
-
-//resources: 
-//https://www.w3schools.com/js/js_htmldom_html.asp
-// https://www.w3schools.com/js/js_arrays.asp
-//https://www.google.com/search?q=how+to+create+a+timer+in+javascript&rlz=1C5CHFA_enUS980US980&ei=IuztYf7BHKiyqtsPxdaDkAs&oq=how+to+create+a+timer+in+j&gs_lcp=Cgdnd3Mtd2l6EAMYADIFCAAQgAQyBQgAEIAEMgUIABCABDIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeMgYIABAWEB4yBggAEBYQHjIGCAAQFhAeOgQIABBDOg4ILhCABBCxAxDHARCjAjoICAAQgAQQsQM6CwgAEIAEELEDEIMBOgsILhCABBCxAxCDAToFCAAQkQI6BQguEIAEOgcIABCABBAKSgQIQRgASgQIRhgAUABYpyNg3yloAXACeACAAVaIAaUMkgECMjeYAQCgAQHAAQE&sclient=gws-wiz
-//https://www.google.com/search?q=multiple+ternary+operators+in+a+single+statement+javascript&rlz=1C5CHFA_enUS980US980&ei=O-7tYaGDGOC4qtsP1PC3mAU&ved=0ahUKEwjhjIfDjMn1AhVgnGoFHVT4DVMQ4dUDCA4&uact=5&oq=multiple+ternary+operators+in+a+single+statement+javascript&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEM0CMgUIABDNAjIFCAAQzQI6BwgAEEcQsAM6BAghEApKBAhBGABKBAhGGABQowtYlRlg8RtoAXACeACAAV-IAeQEkgEBOJgBAKABAcgBCMABAQ&sclient=gws-wiz
-//

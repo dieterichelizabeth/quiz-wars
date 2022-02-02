@@ -18,15 +18,19 @@ WHEN the game is over
 THEN I can save my initials and score
 ```
 
-<!-- Click to view the [deployed application](https://dieterichelizabeth.github.io/weathering-with-apis/) -->
+Click to view the [deployed application](https://dieterichelizabeth.github.io/quiz-wars/)
 
-<!-- ## Screenshots
+## Screenshot
 
-![Screen Shot 2022-01-31 at 12 58 44 AM](https://user-images.githubusercontent.com/95142863/151751450-3fdd1d44-1823-4ff1-9820-6f245ec2bca8.png) -->
+![Example Question](https://user-images.githubusercontent.com/95142863/152230004-f5b824ae-7af4-4008-8df4-229ceb465bf6.png)
 
 ## Documentation/Resources
 
 - [Bootstrap Documentation](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
+- [HTML DOM Documentation](https://www.w3schools.com/js/js_htmldom_html.asp)
+- [JavaScript Arrays Documentation](https://www.w3schools.com/js/js_arrays.asp)
+- [setInterval Documentation](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
+- [Window.localStorage Documentation](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
 ---
 
