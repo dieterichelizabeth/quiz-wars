@@ -2,9 +2,13 @@
 var startEl = document.getElementById('start');
 var timerEl = document.getElementById('timer');
 var contentEl = document.getElementById('content');
+var scoreEl = document.getElementById('high-score');
+
+var scoreHistory = [];
 
 var isIncorrect = true;
-var timeLeft = 30;
+var timeLeft = 30; 
+var stopClock = [];
 
 // points collection
 var points = [];
@@ -43,7 +47,6 @@ qNumber = [];
 // Display the questions (one at a time)
 function displayQuestions() {
   qCount = questions[qNumber.length];
-  console.log("question 1!");
   // clear old content
   contentEl.innerHTML = '';
 
@@ -70,6 +73,8 @@ function displayQuestions() {
   questionLog(answerEl, answer2El, answer3El, answer4El);
 }
 
+
+
 // Answer Questions
 var questionLog = function(answerEl, answer2El, answer3El, answer4El) {
   answerEl.addEventListener('click', answerValidator);
@@ -86,10 +91,9 @@ var questionLog = function(answerEl, answer2El, answer3El, answer4El) {
       // if the user answers correctly, 1 point pushed into the "points array"!
       if (key[0] == qCount.answer){
         var correct = document.createElement('p');
+        correct.setAttribute('class', 'col-lg-8 text-center');
         correct.innerHTML = "CORRECT! NICE JOB 👍";
         document.getElementById('content').appendChild(correct);
-
-        console.log("correct! + points");
         points.push(1);
       }
       
@@ -97,11 +101,12 @@ var questionLog = function(answerEl, answer2El, answer3El, answer4El) {
       else {
 
         var incorrect = document.createElement('p');
+        incorrect.setAttribute('class', 'col-lg-8 text-center');
         incorrect.innerHTML = "✨ Incorrect ✨";
         document.getElementById('content').appendChild(incorrect);
 
         // need to change time left in the interval function to -2 (secconds)
-        console.log("incorrect, no points added");
+        
       }
       
       // add the next button
@@ -123,17 +128,16 @@ var nextQuestion = function(nextEl) {
   // If there are still questions to be answered, push # into array and run displayQuestions
    if (qNumber.length < 4) {
     qNumber.push(1);
-    console.log(qCount);
-    console.log(qNumber);
     displayQuestions();
   }
   // Else, call endgame function
   else {
-    console.log("All questions Answered! Game over");
     gameOver();
   }
   }
 };
+
+
 
 
 
@@ -149,7 +153,7 @@ function countDown() {
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
-    if (timeLeft > 1){
+    if (timeLeft > 1 && stopClock == 0) {
       // Set the `textContent` of `timerEl` to show the remaining seconds
       timerEl.textContent = 'Time remaining: ' + timeLeft;
       // Decrement `timeLeft` by 1
@@ -165,11 +169,15 @@ function countDown() {
   }, 1000);
 }
 
+
+
+
+
 // Game over function
 var gameOver = function() {
-  console.log ("game over!");
-  // TO - DO  STOP THE TIMER
-  timerEl.innerHTML = '';
+  // Stop the timer (if applicable)
+  stopClock.push(1);
+  timerEl.textContent = '';
   // Clear the page
   contentEl.innerHTML = '';
 
@@ -187,8 +195,140 @@ var gameOver = function() {
   totalScore.setAttribute('class', 'text-center col-lg-12');
   document.getElementById('content').appendChild(totalScore);
 
+  // Create a form to store initials
+  var formDirections= document.createElement('p');
+  formDirections.innerHTML = "Enter your initials below!";
+  formDirections.setAttribute('class', 'text-center col-lg-12');
+  document.getElementById('content').appendChild(formDirections);
+
+  var userInitials = document.createElement('form');
+  userInitials.setAttribute('id', 'user-input');
+  document.getElementById('content').appendChild(userInitials);
+
+  var input = document.createElement('input');
+  input.setAttribute('class', 'col-lg-12');
+  input.setAttribute('type', 'text');
+  input.setAttribute('placeholder', 'Ex: AB');
+  input.setAttribute('id', 'user-initials');
+  document.getElementById('user-input').appendChild(input);
+
+  var submitInitials = document.createElement('button');
+  submitInitials.setAttribute('class', 'btn btn-primary mt-3 col-lg-12 text-center');
+  submitInitials.innerHTML = "Submit";
+  submitInitials.setAttribute('id', 'submit-Initials');
+  document.getElementById('user-input').appendChild(submitInitials);
+  
+  // Send to through an input validator
+  var submitInitialsEl = document.getElementById('submit-Initials');
+  var pullInitialsEl = document.getElementById('user-initials')
+  console.log(pullInitialsEl.value);
+  initialValidator(submitInitialsEl, pullInitialsEl);
 }
 
+
+// Initial validator
+var initialValidator = function(submitInitialsEl, pullInitialsEl){
+  submitInitialsEl.addEventListener('click', pass);
+  function pass (event) {
+  event.preventDefault();
+  
+  initials = pullInitialsEl.value.trim();
+  // Check if user input something to the form field
+  if(initials) {
+    pullInitialsEl.value = "";
+    // If yes - validate length
+    if(initials.length <= 2) {
+      console.log("good length");
+      saveYoScore(initials)
+    }
+    // Else- alert the user to input 2 characters
+    else{
+      alert("Please enter your initials (do not include punctuation, 2 characters long) For Example: 'PB'")
+    }
+  }
+  // Else- alert the user to input intials
+  else{
+    alert("Please enter your initials");
+  }
+  }
+}
+
+function saveYoScore(initials){
+//Save the user's highscore in an array
+var totalPoints = points.length * 2
+var scoreInfo = [];
+scoreInfo.push(totalPoints);    
+scoreInfo.push(initials);
+
+// Save search to local storage
+localStorage.setItem("Score Board", JSON.stringify(scoreInfo));
+scoreCount++;
+}
+
+// High Scores display!
+var highScore = function(submitInitialsEl) {
+  // submitInitialsEl.addEventListener('click', showScores);
+  function showScores(){
+  // console.log(pullInitialsEl);
+  // Clear the page
+  contentEl.innerHTML = '';
+
+  // Display High score
+  var newQuestion = document.createElement('h1');
+  newQuestion.setAttribute('class', 'text-center', 'col-lg-12');
+  newQuestion.innerHTML = "High scores";
+  document.getElementById('content').appendChild(newQuestion);
+
+  // Display User's points
+  var totalPoints = points.length * 2
+  var totalScore = document.createElement('p');
+  totalScore.innerHTML = "Initial: " + "Score: " + totalPoints;
+  totalScore.setAttribute('id', 'scoreCount');
+  totalScore.setAttribute('class', 'text-center col-lg-12');
+  document.getElementById('content').appendChild(totalScore);
+
+  // Play again button
+  var again = document.createElement('button');
+  again.setAttribute('class', 'btn btn-primary text-center');
+  again.innerHTML = "Play Again";
+  again.setAttribute('id', 'play-again');
+  document.getElementById('content').appendChild(again);
+  againEl = document.getElementById('play-again');
+  playAgain(againEl);
+
+  // Clear Scores button
+  scoreEl.innerHTML = "";
+  timerEl.innerHTML = "";
+  var clear = document.createElement('button');
+  clear.setAttribute('class', 'btn btn-light text-center');
+  clear.innerHTML = "Clear Highscores";
+  clear.setAttribute('id', 'clear-scores');
+  document.getElementById('timer').appendChild(clear);
+
+  // var clearScoresEl = document.getElementById('clear-scores');
+  // clearScores(clearScoresEl);
+}
+}
+
+// THIS NEEDS TO BE FIXED LOL - reload is not the answer...
+// function playAgain(){
+//   againEl.addEventListener('click', reload);
+//   function reload() {
+//     window.location.reload();
+//   }
+// }
+
+
+
+// Clear Scores
+// var clearScores = function () {
+
+// }
+
+
+
 // use event handler to call coutdownHandler and question Display
-startEl.addEventListener('click', countDown);
-startEl.addEventListener('click', displayQuestions);
+// startEl.addEventListener('click', countDown);
+// startEl.addEventListener('click', displayQuestions);
+
+startEl.addEventListener('click', gameOver);

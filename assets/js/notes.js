@@ -26,31 +26,34 @@ Done: Step 2:
         - buttons need to be lableled ("1, 2, 3, 4")
             - answers to be saved in an array w/ #? 
             - can this be used to see if the question is correct?
-Step 3:
+Done Step 3:
     - add event listener to the question buttons
+    - clear the div to display data-
     - create conditional statement for correct/incorrect questions
             - if correct- push a "point" (+1) into an array, display "correct!"
             - if incorrect- no point added, display "incorrect!"
                 - take time away from the timer
+    - create a "next button" (to move to the next question)
         - display the next question on button click
-            - possibly use a for loop?
+
 -- objective 3: Game over function
-Step 1:
+Done Step 1:
     - create function for game over display
     - if all questions answered || timer = 0 then display game over screen
-Step 2:
-   done - display the "game over"
-   done - calculate the score
+Done Step 2:
+    - display the "game over"
+    - calculate the score
         - take the length of points array
         - multiply by two (each "point"= 2 pts)
-   done - display the score to the user
+    - display the score to the user
     - create the form for users to input their initials
         - add event listener for submit
-Step 3:
+Done Step 3:
     - on submit- take users to the highscore table 
+
 -- objective 4: get score function
 Step 1:
-    - create a "highscore" board
+   done - create a "highscore" board
     - use local storage to store high scores for the user
     - rank initials by highest #
 Step 2: 
