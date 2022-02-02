@@ -55,7 +55,7 @@ Done Step 3:
 Done Step 1:
     - create a "highscore" board
     - use local storage to store high scores for the user
-Step 2: 
+Done Step 2: 
     - allow users to "remove highscores" (clear local storage)
 Step 3: 
     - have a button that links back to the start page

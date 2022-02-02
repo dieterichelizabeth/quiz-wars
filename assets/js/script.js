@@ -320,8 +320,8 @@ var highScore = function(initials) {
   clear.setAttribute('id', 'clear-scores');
   document.getElementById('timer').appendChild(clear);
 
-  // var clearScoresEl = document.getElementById('clear-scores');
-  // clearScores(clearScoresEl);
+  var clearScoresEl = document.getElementById('clear-scores');
+  clearScores(clearScoresEl);
 }
 
 // THIS NEEDS TO BE FIXED LOL - reload is not the answer...
@@ -334,10 +334,13 @@ var highScore = function(initials) {
 
 
 
-// Clear Scores
-// var clearScores = function () {
-
-// }
+//Clear Scores
+var clearScores = function (clearScoresEl) {
+  clearScoresEl.addEventListener('click', noScore);
+  function noScore(){
+  localStorage.removeItem('Score Board');
+  }
+}
 
 
 
