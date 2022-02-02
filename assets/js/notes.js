@@ -52,24 +52,15 @@ Done Step 3:
     - on submit- take users to the highscore table 
 
 -- objective 4: get score function
-Step 1:
-   done - create a "highscore" board
+Done Step 1:
+    - create a "highscore" board
     - use local storage to store high scores for the user
-    - rank initials by highest #
 Step 2: 
     - allow users to "remove highscores" (clear local storage)
 Step 3: 
     - have a button that links back to the start page
-*/
-
-/*
-Future improvements
-else if ((timeLeft > 1) && (timeLeft < 10)) {
-      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-      timerEl.textContent = 'Time remaining: 00:0' + timeLeft;
-      timeLeft--;
-    } 
-
+Step 4:
+    -fix the stupid clock
 */
 
 //resources: 

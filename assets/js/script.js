@@ -253,6 +253,7 @@ var initialValidator = function(submitInitialsEl, pullInitialsEl){
   }
 }
 
+// Save scores to local storage
 function saveYoScore(initials){
 //Save the user's highscore in an array
 var totalPoints = points.length * 2
@@ -260,15 +261,16 @@ var scoreInfo = [];
 scoreInfo.push(totalPoints);    
 scoreInfo.push(initials);
 
+// push array into array
+scoreHistory.push(scoreInfo);
+
 // Save search to local storage
-localStorage.setItem("Score Board", JSON.stringify(scoreInfo));
-scoreCount++;
+localStorage.setItem("Score Board", JSON.stringify(scoreHistory));
+highScore(initials);
 }
 
 // High Scores display!
-var highScore = function(submitInitialsEl) {
-  // submitInitialsEl.addEventListener('click', showScores);
-  function showScores(){
+var highScore = function(initials) {
   // console.log(pullInitialsEl);
   // Clear the page
   contentEl.innerHTML = '';
@@ -276,14 +278,27 @@ var highScore = function(submitInitialsEl) {
   // Display High score
   var newQuestion = document.createElement('h1');
   newQuestion.setAttribute('class', 'text-center', 'col-lg-12');
-  newQuestion.innerHTML = "High scores";
+  newQuestion.innerHTML = "Score Board";
   document.getElementById('content').appendChild(newQuestion);
+
+  // Display Scoreboard
+  var scoresOfThePast = localStorage.getItem("Score Board");
+  var scoreData = JSON.parse(scoresOfThePast);
+
+  for (let i = 0; i < scoreData.length; i++) {
+    var scoreListing = (scoreData[i]);
+    var savedUsername = scoreListing[0];
+    var savedPoints = scoreListing[1];
+    var scoreBoard = document.createElement('p');
+    scoreBoard.innerHTML = savedPoints + " : " + savedUsername;
+    scoreBoard.setAttribute('class', 'text-center col-lg-12');
+    document.getElementById('content').appendChild(scoreBoard);
+  }
 
   // Display User's points
   var totalPoints = points.length * 2
   var totalScore = document.createElement('p');
-  totalScore.innerHTML = "Initial: " + "Score: " + totalPoints;
-  totalScore.setAttribute('id', 'scoreCount');
+  totalScore.innerHTML = "Your score- " + initials + " Score: " + totalPoints;
   totalScore.setAttribute('class', 'text-center col-lg-12');
   document.getElementById('content').appendChild(totalScore);
 
@@ -294,7 +309,7 @@ var highScore = function(submitInitialsEl) {
   again.setAttribute('id', 'play-again');
   document.getElementById('content').appendChild(again);
   againEl = document.getElementById('play-again');
-  playAgain(againEl);
+  // playAgain(againEl);
 
   // Clear Scores button
   scoreEl.innerHTML = "";
@@ -307,7 +322,6 @@ var highScore = function(submitInitialsEl) {
 
   // var clearScoresEl = document.getElementById('clear-scores');
   // clearScores(clearScoresEl);
-}
 }
 
 // THIS NEEDS TO BE FIXED LOL - reload is not the answer...
