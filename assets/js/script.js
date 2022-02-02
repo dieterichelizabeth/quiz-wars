@@ -4,10 +4,12 @@ var timerEl = document.getElementById('timer');
 var contentEl = document.getElementById('content');
 var scoreEl = document.getElementById('high-score');
 
+// Score Collection Variable
 var scoreHistory = [];
 
-var isIncorrect = true;
-var timeLeft = 30; 
+// Timer variables
+var isCorrect = true;
+var timeLeft = 59; 
 var stopClock = [];
 
 // points collection
@@ -16,29 +18,37 @@ var points = [];
 // questions variables: 5 questions
 var questions = [
 myQ1= {
-  question: "What is the name of the angry cat?",
-  answer: "1",
-  choices: ["grumpy cat", "ugly cat", "sassy cat", "mad cat"]
+  question: "What is a global variable?",
+  answer: "4",
+  choices: ["a variable available to multiple projects", "a variable available to a specific function", "a variable available to the internet", "a variable available throughout the length of the code"]
 },
 myQ2= {
-  question: "Best flavor of milk tea?",
+  question: "Which of these are not a function for timers in javaScript?",
   answer: "3",
-  choices: ["wintermellon", "honeydew", "taro", "mango"]
+  choices: ["setTimeout", "setInterval", "setAttribute", "clearInterval"]
 },
 myQ3= {
-  question: "Capital of Texas?",
+  question: "Which of these is not a looping structure?",
   answer: "4",
-  choices: ["Dallas", "Houston", "Oklahoma", "Austin"]
+  choices: ["For", "While", "Do-while", "If...else"]
 },
 myQ4= {
-  question: "Best nut?",
+  question: "Which of these is a pop up box available in javaScript",
   answer: "1",
-  choices: ["Pecan", "Pistacio", "Peanut", "Walnut"]
+  choices: ["Alert", "CallerId", "Display", "Terminate"]
 },
 myQ5= {
-  question: "Which bug is useless?",
+  question: "What are the two basic groups of data types in javaScript?",
   answer: "3",
-  choices: ["Bee", "Spider", "Wasp", "Cicada"]
+  choices: ["Primitive and String", "Object and Reference", "Primitive and Reference", "Object and String"]
+}, 
+myQ6= {
+  question: "Which of these describes event bubbling?",
+  answer: "1",
+  choices: ["If the handler of a child is clicked, the handler of the parent will also work", 
+            "If the handler of a parent is clicked, the handler of the child will also work", 
+            "If the handler of a child is clicked, all handlers in the code will also work", 
+            "If the handler of a parent is clicked, all handlers in the code will also work"]
 }
 ]
 
@@ -82,42 +92,38 @@ var questionLog = function(answerEl, answer2El, answer3El, answer4El) {
   answer3El.addEventListener('click', answerValidator);
   answer4El.addEventListener('click', answerValidator);
 
-    // compares the selected answer to the chosen answer
-    function answerValidator() {
-      var input = event.target.textContent
-      const key = input.split('');
+  // compares the selected answer to the chosen answer
+  function answerValidator() {
+    var input = event.target.textContent
+    const key = input.split('');
 
-      contentEl.innerHTML = '';
-      // if the user answers correctly, 1 point pushed into the "points array"!
-      if (key[0] == qCount.answer){
-        var correct = document.createElement('p');
-        correct.setAttribute('class', 'col-lg-8 text-center');
-        correct.innerHTML = "CORRECT! NICE JOB 👍";
-        document.getElementById('content').appendChild(correct);
-        points.push(1);
-      }
-      
-      // if not - no points added
-      else {
-
-        var incorrect = document.createElement('p');
-        incorrect.setAttribute('class', 'col-lg-8 text-center');
-        incorrect.innerHTML = "✨ Incorrect ✨";
-        document.getElementById('content').appendChild(incorrect);
-
-        // need to change time left in the interval function to -2 (secconds)
-        
-      }
-      
-      // add the next button
-        var next = document.createElement('button');
-        next.setAttribute('class', 'btn btn-primary mb-3 col-lg-8 text-center');
-        next.innerHTML = "next question";
-        document.getElementById('content').appendChild(next);
-        next.setAttribute('id', 'next');
-        var nextEl = document.getElementById('next');
-        nextQuestion(nextEl);
+    contentEl.innerHTML = '';
+    // if the user answers correctly, 1 point pushed into the "points array"!
+    if (key[0] == qCount.answer){
+      var correct = document.createElement('p');
+      correct.setAttribute('class', 'col-lg-8 text-center');
+      correct.innerHTML = "CORRECT! NICE JOB 👍";
+      document.getElementById('content').appendChild(correct);
+      points.push(1);
     }
+      
+    // if not - no points added, and minus 10 secconds
+    else {
+    var incorrect = document.createElement('p');
+    incorrect.setAttribute('class', 'col-lg-8 text-center');
+    incorrect.innerHTML = "✨ Incorrect ✨";
+    document.getElementById('content').appendChild(incorrect);
+    }
+      
+    // add the next button
+    var next = document.createElement('button');
+    next.setAttribute('class', 'btn btn-primary mb-3 col-lg-8 text-center');
+    next.innerHTML = "next question";
+    document.getElementById('content').appendChild(next);
+    next.setAttribute('id', 'next');
+    var nextEl = document.getElementById('next');
+    nextQuestion(nextEl);
+  }
 }
 
 // Next Question Function
@@ -126,7 +132,7 @@ var nextQuestion = function(nextEl) {
   nextEl.addEventListener('click', bleh);
   function bleh() {
   // If there are still questions to be answered, push # into array and run displayQuestions
-   if (qNumber.length < 4) {
+   if (qNumber.length < 5) {
     qNumber.push(1);
     displayQuestions();
   }
@@ -138,18 +144,8 @@ var nextQuestion = function(nextEl) {
 };
 
 
-
-
-
-// decrement timer function
-// grab element of timer and subtract to display
 // Start the timer
-// Timer that counts down from 60 (CHANGE BACK TO 60!!!)
 function countDown() {
-  
-  // if (isIncorrect = true) {
-  //   timeLeft = timeLeft - 5;
-  // };
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
@@ -157,7 +153,10 @@ function countDown() {
       // Set the `textContent` of `timerEl` to show the remaining seconds
       timerEl.textContent = 'Time remaining: ' + timeLeft;
       // Decrement `timeLeft` by 1
-      timeLeft--;
+      if (isCorrect = false) {
+        setInterval(timeLeft - 5);
+      }
+      timeLeft --;
     } 
     else {
       // Once `timeLeft` gets to 0, game over
@@ -170,10 +169,7 @@ function countDown() {
 }
 
 
-
-
-
-// Game over function
+//  Game over function
 var gameOver = function() {
   // Stop the timer (if applicable)
   stopClock.push(1);
@@ -221,15 +217,14 @@ var gameOver = function() {
   // Send to through an input validator
   var submitInitialsEl = document.getElementById('submit-Initials');
   var pullInitialsEl = document.getElementById('user-initials')
-  console.log(pullInitialsEl.value);
   initialValidator(submitInitialsEl, pullInitialsEl);
 }
 
 
 // Initial validator
 var initialValidator = function(submitInitialsEl, pullInitialsEl){
-  submitInitialsEl.addEventListener('click', pass);
-  function pass (event) {
+  submitInitialsEl.addEventListener('click', check);
+  function check (event) {
   event.preventDefault();
   
   initials = pullInitialsEl.value.trim();
@@ -239,6 +234,7 @@ var initialValidator = function(submitInitialsEl, pullInitialsEl){
     // If yes - validate length
     if(initials.length <= 2) {
       console.log("good length");
+      // Move to local storage function
       saveYoScore(initials)
     }
     // Else- alert the user to input 2 characters
@@ -255,34 +251,38 @@ var initialValidator = function(submitInitialsEl, pullInitialsEl){
 
 // Save scores to local storage
 function saveYoScore(initials){
-//Save the user's highscore in an array
-var totalPoints = points.length * 2
-var scoreInfo = [];
-scoreInfo.push(totalPoints);    
-scoreInfo.push(initials);
+    //Save the user's highscore in an array
+    var totalPoints = points.length * 2
+    var scoreInfo = [];
+    scoreInfo.push(totalPoints);    
+    scoreInfo.push(initials);
 
-// push array into array
-scoreHistory.push(scoreInfo);
+    // push array into array
+    var scoreHistory = [];
+    scoreHistory.push(scoreInfo);
 
-// Save search to local storage
-localStorage.setItem("Score Board", JSON.stringify(scoreHistory));
-highScore(initials);
+    // Save search to local storage
+    window.localStorage.setItem("Score Board", JSON.stringify(scoreHistory));
+    var check = 1
+    helpMe = check
+    localStorage.setItem("why", JSON.stringify(helpMe));
+  // Move to display highscore
+  highScore(initials);
 }
 
 // High Scores display!
 var highScore = function(initials) {
-  // console.log(pullInitialsEl);
   // Clear the page
   contentEl.innerHTML = '';
 
-  // Display High score
+  // Display 'Score board'
   var newQuestion = document.createElement('h1');
   newQuestion.setAttribute('class', 'text-center', 'col-lg-12');
   newQuestion.innerHTML = "Score Board";
   document.getElementById('content').appendChild(newQuestion);
 
-  // Display Scoreboard
-  var scoresOfThePast = localStorage.getItem("Score Board");
+  // Display Scoreboard Data
+  var scoresOfThePast = window.localStorage.getItem("Score Board");
   var scoreData = JSON.parse(scoresOfThePast);
 
   for (let i = 0; i < scoreData.length; i++) {
@@ -309,7 +309,7 @@ var highScore = function(initials) {
   again.setAttribute('id', 'play-again');
   document.getElementById('content').appendChild(again);
   againEl = document.getElementById('play-again');
-  // playAgain(againEl);
+  playAgain(againEl);
 
   // Clear Scores button
   scoreEl.innerHTML = "";
@@ -324,15 +324,13 @@ var highScore = function(initials) {
   clearScores(clearScoresEl);
 }
 
-// THIS NEEDS TO BE FIXED LOL - reload is not the answer...
-// function playAgain(){
-//   againEl.addEventListener('click', reload);
-//   function reload() {
-//     window.location.reload();
-//   }
-// }
-
-
+// Refreshes the page
+function playAgain(){
+  againEl.addEventListener('click', reload);
+  function reload() {
+    window.location.reload();
+  }
+}
 
 //Clear Scores
 var clearScores = function (clearScoresEl) {
@@ -342,10 +340,6 @@ var clearScores = function (clearScoresEl) {
   }
 }
 
-
-
 // use event handler to call coutdownHandler and question Display
-// startEl.addEventListener('click', countDown);
-// startEl.addEventListener('click', displayQuestions);
-
-startEl.addEventListener('click', gameOver);
+startEl.addEventListener('click', countDown);
+startEl.addEventListener('click', displayQuestions);

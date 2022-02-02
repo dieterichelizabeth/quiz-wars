@@ -2,31 +2,31 @@
 Psuedocoding
 -- objective 1: create the html for the first screen + styling (bootstrap)
 Arrays needed - Hold questions array, correct points array
-Done: Step 1: 
+Step 1: 
     - title: 
     - description
     - start button
     - nav w/ link to view highscores/timer placeholder
-Done: Step 2: 
+Step 2: 
     - put the title, start button and description in a div/container
         - the div will be used to display 
             - questions (dynamically generated)
             - game over form (display game over/let users insert initials)
             - high score display
-Done: Step 3: Link "start button" event listener to next function
+Step 3: Link "start button" event listener to next function
 
 -- objective 2: Display quiz questions, track if quesitons are correct/incorrect, 
-Done: Step 1:
+Step 1:
     - clear the div holding start quiz display?
     - create an array to pull questions from
-Done: Step 2:
+Step 2:
     - create function to display questions
     - targeting an h1/p?
     - button creation for answers
         - buttons need to be lableled ("1, 2, 3, 4")
             - answers to be saved in an array w/ #? 
             - can this be used to see if the question is correct?
-Done Step 3:
+Step 3:
     - add event listener to the question buttons
     - clear the div to display data-
     - create conditional statement for correct/incorrect questions
@@ -37,10 +37,10 @@ Done Step 3:
         - display the next question on button click
 
 -- objective 3: Game over function
-Done Step 1:
+Step 1:
     - create function for game over display
     - if all questions answered || timer = 0 then display game over screen
-Done Step 2:
+Step 2:
     - display the "game over"
     - calculate the score
         - take the length of points array
@@ -48,20 +48,20 @@ Done Step 2:
     - display the score to the user
     - create the form for users to input their initials
         - add event listener for submit
-Done Step 3:
+Step 3:
     - on submit- take users to the highscore table 
 
 -- objective 4: get score function
-Done Step 1:
+Step 1:
     - create a "highscore" board
     - use local storage to store high scores for the user
-Done Step 2: 
+Step 2: 
     - allow users to "remove highscores" (clear local storage)
 Step 3: 
     - have a button that links back to the start page
-Step 4:
-    -fix the stupid clock
 */
+
+// ISSUE My local storage does not save data once refreshed
 
 //resources: 
 //https://www.w3schools.com/js/js_htmldom_html.asp
