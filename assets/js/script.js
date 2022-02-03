@@ -259,13 +259,20 @@ function saveYoScore(initials){
 
     // push array into array
     var scoreHistory = [];
-    scoreHistory.push(scoreInfo);
 
     // Save search to local storage
+    // read the string, localStorage.getItem('setUsernamesArray'),
+    var scoresOfThePast = window.localStorage.getItem("Score Board");
+    // then convert it to an array with JSON.parse,
+    var scoreHistory = JSON.parse(scoresOfThePast);
+    // then push to the array,
+    scoreHistory.push(scoreInfo);
+    // and then store it again with localStorage.setItem('setUsernamesArray', JSON.stringify(array))
     window.localStorage.setItem("Score Board", JSON.stringify(scoreHistory));
     var check = 1
     helpMe = check
     localStorage.setItem("why", JSON.stringify(helpMe));
+      
   // Move to display highscore
   highScore(initials);
 }
