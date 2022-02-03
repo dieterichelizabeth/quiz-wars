@@ -257,21 +257,24 @@ function saveYoScore(initials){
     scoreInfo.push(totalPoints);    
     scoreInfo.push(initials);
 
-    // push array into array
-    var scoreHistory = [];
-
     // Save search to local storage
     // read the string, localStorage.getItem('setUsernamesArray'),
     var scoresOfThePast = window.localStorage.getItem("Score Board");
     // then convert it to an array with JSON.parse,
     var scoreHistory = JSON.parse(scoresOfThePast);
+    console.log(scoreHistory);
+    if (scoreHistory === null) {
+      // create a new array
+      var scoreHistory = [];
+      // then push to the array,
+      scoreHistory.push(scoreInfo);
+    }
+    else{
     // then push to the array,
     scoreHistory.push(scoreInfo);
+    }
     // and then store it again with localStorage.setItem('setUsernamesArray', JSON.stringify(array))
     window.localStorage.setItem("Score Board", JSON.stringify(scoreHistory));
-    var check = 1
-    helpMe = check
-    localStorage.setItem("why", JSON.stringify(helpMe));
       
   // Move to display highscore
   highScore(initials);
@@ -350,3 +353,4 @@ var clearScores = function (clearScoresEl) {
 // use event handler to call coutdownHandler and question Display
 startEl.addEventListener('click', countDown);
 startEl.addEventListener('click', displayQuestions);
+scoreEl.addEventListener('click', highScore);
