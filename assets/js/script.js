@@ -8,9 +8,9 @@ var scoreEl = document.getElementById('high-score');
 var scoreHistory = [];
 
 // Timer variables
-var isCorrect = true;
 var timeLeft = 59; 
 var stopClock = [];
+var isIncorrect = false;
 
 // points collection
 var points = [];
@@ -113,6 +113,9 @@ var questionLog = function(answerEl, answer2El, answer3El, answer4El) {
     incorrect.setAttribute('class', 'col-lg-8 text-center');
     incorrect.innerHTML = "✨ Incorrect ✨";
     document.getElementById('content').appendChild(incorrect);
+    isIncorrect = true;
+    decrementTimer(isIncorrect);
+    // countDown(isTrue) 
     }
       
     // add the next button
@@ -143,19 +146,25 @@ var nextQuestion = function(nextEl) {
   }
 };
 
+function decrementTimer (isIncorrect) {
+  console.log(isIncorrect);
+  if (isIncorrect) {
+      timeLeft = timeLeft - 2;
+      console.log(timeLeft);
+      timerEl.textContent = 'Time remaining: ' + timeLeft;
+    }
+    isIncorrect = true;
+}
 
 // Start the timer
 function countDown() {
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
-    if (timeLeft > 1 && stopClock == 0) {
+    if (timeLeft > 1) {
       // Set the `textContent` of `timerEl` to show the remaining seconds
       timerEl.textContent = 'Time remaining: ' + timeLeft;
       // Decrement `timeLeft` by 1
-      if (isCorrect = false) {
-        setInterval(timeLeft - 5);
-      }
       timeLeft --;
     } 
     else {
