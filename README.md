@@ -1,24 +1,12 @@
 # 04 Quiz-wars!
 
-Challenge 4 Web APIs Challenge: Code Quiz 🤔
+JavaScript Code Quiz 🤔
 
-This week’s Challenge is to build a timed coding quiz with multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by JavaScript. It will have a clean, polished, responsive user interface, and constructed based on the following criteria-
+[Click here to take the quiz!](https://dieterichelizabeth.github.io/quiz-wars/)
 
-```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
-```
+Quiz wars is a web app for users who want to test their JavaScript knowledge. This app is a short, timed quiz, which lets the user know if they were right or wrong immediately after answering each question. The app subtracts seconds off the clock for each incorrect answer, and at the end- you are given a score! Play multiple times to try to beat your high-score and rank first on the leaderboard!
 
-Click to view the [deployed application](https://dieterichelizabeth.github.io/quiz-wars/)
+Quiz Wars uses DOM API methods to handle events such as key presses and mouse clicks, and features dynamically updated HTML and CSS powered by JavaScript. High scores are stored in local storage, and a timer function sets time-based events (ex. Game Over when the clock runs down).
 
 ## Screenshot
 
@@ -34,4 +22,4 @@ Click to view the [deployed application](https://dieterichelizabeth.github.io/qu
 
 ---
 
-© 2022 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+Made with ❤️
