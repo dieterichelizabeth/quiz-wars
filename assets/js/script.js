@@ -171,7 +171,7 @@ function countDown() {
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
-    if (timeLeft > 1) {
+    if (timeLeft > 1 && stopClock < 1) {
       // Set the `textContent` of `timerEl` to show the remaining seconds
       timerEl.textContent = "Time remaining: " + timeLeft;
       // Decrement `timeLeft` by 1
